@@ -29,6 +29,17 @@ func _ready():
 
 	pass
 
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.pressed and event.scancode == KEY_ESCAPE:
+			get_tree().quit()
+		if event.pressed and event.scancode == KEY_J:
+            print("printando jjjjjjjjjjjjrojo")
+		if event.pressed and event.scancode == KEY_K:
+            print("printando KKKKKKKKKKKKverde")
+		if event.pressed and event.scancode == KEY_L:
+            print("printando lllllllllllamarillo")
+
 func _process(delta):
 	#¿por que se ha cambiao el fisic del proces?
 	#simulación gravedad
@@ -36,7 +47,15 @@ func _process(delta):
 
 # esto  no se que es, creo que by Bravo
 #	print ("angulo en radianes: " + str( motion.angle()))
-
+#	if Input.is_action_pressed("J"):
+#		print("j_rojo")
+#
+#	if Input.is_action_pressed("K"):
+#		print("k_amarillo")
+#
+#	if Input.is_action_pressed("L"):
+#		print("l_azul")
+		
 
 	#movimiento: poner valores a la velo lineal según entradas cruceta lateral
 	if Input.is_action_pressed("ui_right"):
@@ -59,6 +78,7 @@ func _process(delta):
 		
 	if Input.is_action_pressed("disparo"):
 		disparo()
+		
 		pass
 		
 # Limites para el movimiento
@@ -148,7 +168,7 @@ func disparo():
 	else:
 		sonidoDisparo.play()
 		
-		
+		######################  aqui
 		var bala = escenaBala.instance()
 		bala.apretarGatillo($PositionBala.global_position, rotation)
 		get_parent().get_parent().get_parent().get_parent().add_child(bala)
