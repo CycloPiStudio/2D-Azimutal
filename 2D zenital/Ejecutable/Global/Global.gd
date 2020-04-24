@@ -1,5 +1,5 @@
 extends Node
-
+var color = "rojo"
 var personaje = 0
 var RutaPersonajeSelect = 0
 var nivel = 0
