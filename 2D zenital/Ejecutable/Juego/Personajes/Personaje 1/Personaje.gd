@@ -14,7 +14,7 @@ var Personaje1Muerto
 onready var escenaBala = preload("res://Ejecutable/Juego/Personajes/ComunesPersonaje/bala/bala.tscn")
 var sonidoDisparo
 var sonidoDano
-
+var num_bala = 0
 # var pa la vida:
 
 func _ready():
@@ -31,15 +31,27 @@ func _ready():
 
 func _unhandled_input(event):
 	if event is InputEventKey:
-		if event.pressed and event.scancode == KEY_ESCAPE:
-			get_tree().quit()
+		
+#		if event.pressed and event.scancode == KEY_ESCAPE:
+#			get_tree().quit()
 		if event.pressed and event.scancode == KEY_J:
-            print("printando jjjjjjjjjjjjrojo")
-		if event.pressed and event.scancode == KEY_K:
-            print("printando KKKKKKKKKKKKverde")
-		if event.pressed and event.scancode == KEY_L:
-            print("printando lllllllllllamarillo")
+			if num_bala >= 3:
+				num_bala = 0
+				Global.color = Global.colorlist[num_bala]
+			else:
+				Global.color = Global.colorlist[num_bala]
+				print("printando j ",Global.color)
+				num_bala+=1
+#				print("printando jjjjjjjjjjjjrojo",Global.color.count())
 
+			
+#			Global.color = "rojo"
+#		if event.pressed and event.scancode == KEY_K:
+#			print("printando KKKKKKKKKKKKverde")
+#			Global.color = "verde"
+#		if event.pressed and event.scancode == KEY_L:
+#			print("printando lllllllllllamarillo")
+#			Global.color = "amarillo"
 func _process(delta):
 	#¿por que se ha cambiao el fisic del proces?
 	#simulación gravedad
@@ -171,6 +183,8 @@ func disparo():
 		######################  aqui
 		var bala = escenaBala.instance()
 		bala.apretarGatillo($PositionBala.global_position, rotation)
+		bala.add_to_group(Global.color)
+#	
 		get_parent().get_parent().get_parent().get_parent().add_child(bala)
 #		print ($PositionBala.global_position)
 
