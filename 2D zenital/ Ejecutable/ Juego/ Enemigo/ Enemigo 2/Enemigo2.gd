@@ -13,7 +13,7 @@ var regVida  = vidaMalo
 
 
 func _ready():
-
+	$Enemigo2.set_texture(load("res://Ejecutable/Juego/Enemigo/Enemigo 1/Enemigo1"+ mi_color +".png"))
 	set_process(true)
 	pass
 
