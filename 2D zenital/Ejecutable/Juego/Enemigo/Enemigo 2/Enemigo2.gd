@@ -3,7 +3,7 @@ extends KinematicBody2D
 onready var escenaBala = preload("res://Ejecutable/Juego/Enemigo/ComunesEmenigo/bala/bala.tscn")
 onready var posPlayer1
 var posEnemigo = $".".position
-var mi_color = "rojo"
+var mi_color = "verde"
 var motionM = Vector2()
 var contadorPosM = 1000
 var veloMalo = 100
