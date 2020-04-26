@@ -1,10 +1,9 @@
 extends KinematicBody2D
 
 onready var escenaBala = preload("res://Ejecutable/Juego/Enemigo/ComunesEmenigo/bala/bala.tscn")
-
 onready var posPlayer1
 var posEnemigo = $".".position
-
+var mi_color = "rojo"
 var motionM = Vector2()
 var contadorPosM = 1000
 var veloMalo = 100
@@ -22,7 +21,7 @@ func _process(delta):
 #______________Para que el enemigo mire al player_________________
 	posPlayer1 = get_parent().get_parent().get_node("PosicionSalida/personaje/Personaje").position
 	look_at(posPlayer1)
-	
+#	print("vidaMalo   "  ,vidaMalo)
 	pass
 #______________Para maver enemigo _________________
 #	move_and_collide(Vector2(
@@ -40,17 +39,17 @@ func _process(delta):
 		contadorPosM = 1000
 	motionM = move_and_slide(motionM)
 	
-	if  is_on_floor():
-		# print("en el suelo malo malo colisión")
-		vidaMalo -=1
-		get_node("AudioMuereEnemigo").play()
-		pass
-		
-	if is_on_wall():
-		# print("pared malo pared malo colisión")
-		vidaMalo -= 1
-		get_node("AudioMuereEnemigo").play()
-		pass
+#	if  is_on_floor():
+#		# print("en el suelo malo malo colisión")
+#		vidaMalo -=1
+#		get_node("AudioMuereEnemigo").play()
+#		pass
+#
+#	if is_on_wall():
+#		# print("pared malo pared malo colisión")
+#		vidaMalo -= 1
+#		get_node("AudioMuereEnemigo").play()
+#		pass
 		
 
 
@@ -84,3 +83,10 @@ func disparo():
 	bala.apretarGatillo($PositionBala.global_position, rotation)
 	get_parent().add_child(bala)
 	
+
+
+func _on_Area2D_area_entered(area):
+#	print("miratelo",area.get_groups())
+	if area.is_in_group( mi_color ):
+		vidaMalo -=1
+		area.get_parent().queue_free()
