@@ -6,7 +6,7 @@ extends KinematicBody2D
 # var pa movimiento:
 var motion = Vector2()
 var velocidad  = 10000
-
+var num_bala = 0
 # var pal cambio gameover
 var preGameOver = preload("res://Ejecutable/Menus/Game Over/GameOver.tscn").instance()
 var Personaje1Muerto
@@ -14,7 +14,7 @@ var Personaje1Muerto
 onready var escenaBala = preload("res://Ejecutable/Juego/Personajes/ComunesPersonaje/bala/bala.tscn")
 var sonidoDisparo
 var sonidoDano
-var num_bala = 0
+
 # var pa la vida:
 
 func _ready():
@@ -24,24 +24,40 @@ func _ready():
 	set_process(true)
 	sonidoDisparo = get_node("AudioDisparo")
 	sonidoDano = get_node("AudioDano")
-	print(get_tree().get_nodes_in_group("Enemigo"))
-	print(get_tree().get_nodes_in_group("Enemigo").size())
+#	print(get_tree().get_nodes_in_group("Enemigo"))
+#	print(get_tree().get_nodes_in_group("Enemigo").size())
 
 	pass
 
 func _unhandled_input(event):
+	
 	if event is InputEventKey:
 		
 #		if event.pressed and event.scancode == KEY_ESCAPE:
 #			get_tree().quit()
 		if event.pressed and event.scancode == KEY_J:
-			if num_bala >= 3:
+#			print("Color antes  ",Global.color)
+#			print("numero de bala  antes  ",num_bala)
+#			print("tamaño- 1",Global.colorlist.size()-1)
+			if num_bala == Global.colorlist.size()-1:
 				num_bala = 0
 				Global.color = Global.colorlist[num_bala]
-			else:
-				Global.color = Global.colorlist[num_bala]
-				print("printando j ",Global.color)
+				
+				print("bala  restet ",num_bala)
+				
+			else:	
+#				print("numero de bala  else antes suma",num_bala)
 				num_bala+=1
+				Global.color = Global.colorlist[num_bala]
+#				print("numero de bala  else",num_bala)
+#		
+			print("Color  despues",Global.color)
+#			print("numero de bala   despues ",num_bala)
+			
+#			print ("Global.colorlist.size()  ",Global.colorlist.size())
+#			print("el puto color ",Global.color)
+#			print("printando j ",Global.color)
+				
 #				print("printando jjjjjjjjjjjjrojo",Global.color.count())
 
 			
@@ -119,20 +135,20 @@ func _process(delta):
 #esto es una prueba pa la colision
 #esto me gusta pa platarformas
 	if  is_on_floor():
-		print("en el suelo")
+#		print("en el suelo")
 #		print($".".get_slide_collision(0))
 		bajaVida()
 		pass
 		
 	if is_on_wall():
-		print("pared")
+#		print("pared")
 		bajaVida()
 		pass
 		
 		
 #esto detecta collision
 	if is_on_ceiling():
-		print("colision!!")
+#		print("colision!!")
 #		print($".".get_slide_collision(0))
 		bajaVida()
 		pass
@@ -183,7 +199,7 @@ func disparo():
 		######################  aqui
 		var bala = escenaBala.instance()
 		bala.apretarGatillo($PositionBala.global_position, rotation)
-		bala.add_to_group(Global.color)
+#		bala.add_to_group(Global.color)
 #	
 		get_parent().get_parent().get_parent().get_parent().add_child(bala)
 #		print ($PositionBala.global_position)
