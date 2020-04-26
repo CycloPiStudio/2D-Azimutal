@@ -1,7 +1,38 @@
 # 2D-Azimutal
+25-04-2020
+
+
+
+
+
+
+Título: 
+Cuatrimania
+
+Desarrollo: 
+Cyclo 𝛑 Studio, Cyclo Pi Studio
+
+Game Jam: 
+261st One Hour Game Jam (25 Apr 2020)
+
+https://onehourgamejam.com/?page=jam&jam=261
+
+Tema: 
+A game with 4 colors only
+
+Plataformas soportadas: 
+Explorador Mozilla Firefox
+
+Como jugar: 
+
+Muevete con la cruceta, cambia de arma con la letra J y dispara con el botón espacio
+
+Move with the crosshead, change weapons with the letter J and shoot with the space button
+
 25-04-2020 
 probando rama, bueno aquí estamos
-hola
+
+
 14-03-2020
 255th One Hour Game Jam (14 Mar 2020)
 
