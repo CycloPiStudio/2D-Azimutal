@@ -38,6 +38,6 @@ func _process(delta):
 #
 func _on_VisibilityNotifier2D_viewport_exited(viewport):
 #	print ("La bala sale de la viewport y desaparece")
-	print(viewport)
+#	print(viewport)
 	queue_free()
-	pass 
+	
